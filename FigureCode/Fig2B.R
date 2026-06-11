@@ -13,11 +13,8 @@ df_test_xgb <- read.csv(sprintf('out/%s/test_patient_xgb.csv', cancer_name))
 
 # KM curves for XGB with optimal cutoff
 cutpoint <- surv_cutpoint(df_test_xgb, time = "Time", event = "Event", 
-                          variables = "risk_patient", minprop = 0.45)
+                          variables = "risk_patient")
 cutoff_val <- cutpoint$cutpoint$cutpoint
-if (cancer_name == "GBM") {
-  cutoff_val <- quantile(df_train_xgb$risk_patient, 0.85)
-}
 cat(sprintf("\nOptimal cutoff: %.4f\n", cutoff_val))
 
 # Function to calculate HR and 95% CI
