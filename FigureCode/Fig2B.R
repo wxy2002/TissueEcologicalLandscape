@@ -12,7 +12,7 @@ df_train_xgb <- read.csv(sprintf('out/%s/train_patient_xgb.csv', cancer_name))
 df_test_xgb <- read.csv(sprintf('out/%s/test_patient_xgb.csv', cancer_name))
 
 # KM curves for XGB with optimal cutoff
-cutpoint <- surv_cutpoint(df_test_xgb, time = "Time", event = "Event", 
+cutpoint <- surv_cutpoint(df_train_xgb, time = "Time", event = "Event", 
                           variables = "risk_patient")
 cutoff_val <- cutpoint$cutpoint$cutpoint
 cat(sprintf("\nOptimal cutoff: %.4f\n", cutoff_val))
